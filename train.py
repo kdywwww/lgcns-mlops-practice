@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     # Set experiment name for mlflow
     logger.info("Setting a new experiment for MLflow...")
-    experiment_name = "new_experiment_with_log"
+    experiment_name = "new_experiment_with_log_2"
     mlflow.set_experiment(experiment_name=experiment_name)
     mlflow.set_tracking_uri("./mlruns")
 
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     # BentoML에 모델 저장
     bentoml.sklearn.save_model(
         name="house_rent",
-        model=mlflow.sklearn.load_model(ARTIFACT_PATH),
+        model=mlflow.sklearn.load_model(best_model_uri),
         signatures={"predict": {"batchable": True, "batch_dim": 0}},
         metadata=best_params,
     )
